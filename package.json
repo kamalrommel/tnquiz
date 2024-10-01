@@ -3,15 +3,18 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Jouw Naam",
+  "author": "",
   "license": "ISC",
-  "description": "Een Discord bot gebouwd met discord.js",
+  "description": "",
   "dependencies": {
     "discord.js": "^14.16.3",
     "dotenv": "^16.4.5",
-    "js-levenshtein": "^1.1.6"
+    "fs": "^0.0.1-security",
+    "js-levenshtein": "^1.1.6",
+    "path": "^0.12.7"
   }
 }
