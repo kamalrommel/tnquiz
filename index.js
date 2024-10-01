@@ -3,7 +3,7 @@
 // npm install js-levenshtein
 
 
-const { Client, GatewayIntentBits, PermissionsBitField } = require('discord.js');
+const { Client, GatewayIntentBits } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 const { token } = require('./config.json');
@@ -15,6 +15,18 @@ const gebruikersAntwoorden = {}; // Hier worden de correct beantwoorde vragen pe
 
 const client = new Client({
     intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
+});
+
+// Event listener voor als de bot is ingelogd
+client.once('ready', () => {
+    console.log(`Ingelogd als ${client.user.tag}`);
+});
+
+// Event listener voor berichten
+client.on('messageCreate', (message) => {
+    if (message.author.bot) return; // Negeer berichten van bots
+
+    // Voeg hier je logica toe voor het verwerken van berichten
 });
 
 // Laad origineleQuiz vanuit een JSON-bestand
