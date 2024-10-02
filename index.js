@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const levenshtein = require('js-levenshtein');
 require('dotenv').config();
+const keep_alive = requiree('./keep_alive.js')
 
 const quizFilePath = path.join(__dirname, 'quizvragen.json');
 const replacementsFilePath = path.join(__dirname, 'replacements.json');
