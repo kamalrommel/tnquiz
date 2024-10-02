@@ -8,7 +8,17 @@ const levenshtein = require('js-levenshtein');
 const quizFilePath = path.join(__dirname, 'quizvragen.json');
 const replacementsFilePath = path.join(__dirname, 'replacements.json');
 const winnaarsFilePath = path.join(__dirname, 'winnaars.json');
+const express = require('express')
+const app = express()
+const port = process.env.PORT || 4000;
 
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
 
 const client = new Client({
     intents: [
