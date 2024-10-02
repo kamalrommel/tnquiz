@@ -5,21 +5,10 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 const levenshtein = require('js-levenshtein');
-require('dotenv').config();
-const keep_alive = requiree('keep_alive.js')
-
 const quizFilePath = path.join(__dirname, 'quizvragen.json');
 const replacementsFilePath = path.join(__dirname, 'replacements.json');
 const winnaarsFilePath = path.join(__dirname, 'winnaars.json');
-const app = express();
-const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
-
-app.post('/webhook', (req, res) => {
-    console.log('Webhook ontvangen:', req.body);
-    res.sendStatus(200);
-});
 
 const client = new Client({
     intents: [
