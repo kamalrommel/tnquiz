@@ -35,6 +35,12 @@ app.listen(PORT, () => {
     console.log(`Server draait op poort ${PORT}`);
 });
 
+const http = require('http');
+
+setInterval(() => {
+    http.get('https://tnquiz.onrender.com');  // Jouw bot-URL
+}, 300000);  // Elke 5 minuten (300.000 ms)
+
 const gebruikersAntwoorden = {}; // Hier worden de correct beantwoorde vragen per gebruiker opgeslagen
 
 // Event listener voor als de bot is ingelogd
