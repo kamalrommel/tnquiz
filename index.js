@@ -35,11 +35,17 @@ app.listen(PORT, () => {
     console.log(`Server draait op poort ${PORT}`);
 });
 
-const http = require('http');
+client.once('ready', () => {
+    console.log(`Logged in as ${client.user.tag}`);
 
-setInterval(() => {
-    http.get('https://tnquiz.onrender.com');  // Jouw bot-URL
-}, 300000);  // Elke 5 minuten (300.000 ms)
+   const channelId = '123456789012345678'; // Vervang dit door jouw Channel ID
+
+client.on('ready', () => {
+    const channel = client.channels.cache.get(channelId);
+    if (channel) {
+        channel.send('Just Staying alive!');
+    }
+});
 
 const gebruikersAntwoorden = {}; // Hier worden de correct beantwoorde vragen per gebruiker opgeslagen
 
