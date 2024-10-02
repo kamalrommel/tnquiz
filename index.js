@@ -11,6 +11,15 @@ const keep_alive = requiree('keep_alive.js')
 const quizFilePath = path.join(__dirname, 'quizvragen.json');
 const replacementsFilePath = path.join(__dirname, 'replacements.json');
 const winnaarsFilePath = path.join(__dirname, 'winnaars.json');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.json());
+
+app.post('/webhook', (req, res) => {
+    console.log('Webhook ontvangen:', req.body);
+    res.sendStatus(200);
+});
 
 const client = new Client({
     intents: [
@@ -18,33 +27,6 @@ const client = new Client({
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent
     ]
-});
-
-// Voeg deze regel toe om een server te laten draaien, ook al is dit een Discord bot
-const PORT = process.env.PORT || 3000; // Binden aan een poort
-const express = require('express');
-const app = express();
-
-// Start een simpele Express server
-app.get('/', (req, res) => {
-    res.send('Discord bot is online!');
-});
-
-// Luister op de gedefinieerde poort
-app.listen(PORT, () => {
-    console.log(`Server draait op poort ${PORT}`);
-});
-
-client.once('ready', () => {
-    console.log(`Logged in as ${client.user.tag}`);
-
-   const channelId = '123456789012345678'; // Vervang dit door jouw Channel ID
-
-client.on('ready', () => {
-    const channel = client.channels.cache.get(channelId);
-    if (channel) {
-        channel.send('Just Staying alive!');
-    }
 });
 
 const gebruikersAntwoorden = {}; // Hier worden de correct beantwoorde vragen per gebruiker opgeslagen
