@@ -6,7 +6,8 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
-const { token } = require('./config.json');
+require('dotenv').config();
+const token = process.env.DISCORD_BOT_TOKEN;
 const quizFilePath = path.join(__dirname, 'quizvragen.json');
 const replacementsFilePath = path.join(__dirname, 'replacements.json');
 const levenshtein = require('js-levenshtein');
