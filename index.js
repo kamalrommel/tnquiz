@@ -1,29 +1,34 @@
-//npm install
-//node install
+// npm install
 // npm install js-levenshtein
-
 
 const { Client, GatewayIntentBits } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
+const levenshtein = require('js-levenshtein');
+require('dotenv').config();
+
 const quizFilePath = path.join(__dirname, 'quizvragen.json');
 const replacementsFilePath = path.join(__dirname, 'replacements.json');
-const levenshtein = require('js-levenshtein');
 const winnaarsFilePath = path.join(__dirname, 'winnaars.json');
-const gebruikersAntwoorden = {}; // Hier worden de correct beantwoorde vragen per gebruiker opgeslagen
-
-require('dotenv').config();
-const token = process.env.DISCORD_TOKEN;
-client.login(token);
 
 const client = new Client({
-    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent
+    ]
 });
+
+const gebruikersAntwoorden = {}; // Hier worden de correct beantwoorde vragen per gebruiker opgeslagen
 
 // Event listener voor als de bot is ingelogd
 client.once('ready', () => {
     console.log(`Ingelogd als ${client.user.tag}`);
 });
+
+// Token inloggen
+const token = process.env.DISCORD_TOKEN;
+client.login(token).catch(console.error);
 
 // Event listener voor berichten
 client.on('messageCreate', (message) => {
