@@ -19,6 +19,21 @@ const client = new Client({
     ]
 });
 
+// Voeg deze regel toe om een server te laten draaien, ook al is dit een Discord bot
+const PORT = process.env.PORT || 3000; // Binden aan een poort
+const express = require('express');
+const app = express();
+
+// Start een simpele Express server
+app.get('/', (req, res) => {
+    res.send('Discord bot is online!');
+});
+
+// Luister op de gedefinieerde poort
+app.listen(PORT, () => {
+    console.log(`Server draait op poort ${PORT}`);
+});
+
 const gebruikersAntwoorden = {}; // Hier worden de correct beantwoorde vragen per gebruiker opgeslagen
 
 // Event listener voor als de bot is ingelogd
